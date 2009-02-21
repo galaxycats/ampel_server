@@ -8,18 +8,25 @@
 		<script src="http://<%= @request.host %>/prototype.js" type="text/javascript" charset="utf-8"></script>
 		
 		<title>Ampel Server</title>
+		
+		<style type="text/css" media="screen">
+		  img {
+		    border: none;
+		  }
+		</style>
+		
 	</head>
 	
 	<body>
 		<div id="rundumleuchte">
 			<div id="signal_off">
-				<a href="http://<%= @request.host %>/ampel_server/index?actions[signal]=-1">
+				<a href="http://<%= @request.host %>/ampel_server/index?actions[signal]=On">
 					<img src="http://<%= @request.host %>/signal.gif" width="95" height="95" alt="Signal"><br />
 				</a>
 			</div>
 			
 			<div id="signal_on">
-				<a href="http://<%= @request.host %>/ampel_server/index?actions[signal]=0">
+				<a href="http://<%= @request.host %>/ampel_server/index?actions[signal]=Off">
 					<img src="http://<%= @request.host %>/signal_animated.gif" width="95" height="95" alt="Signal"><br />
 				</a>
 			</div>
@@ -77,7 +84,6 @@
 				</a>
 			<%- end -%>
 		</div>
-		
 		
 	</body>
 	

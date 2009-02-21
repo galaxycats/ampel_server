@@ -1,4 +1,8 @@
-require 'simpleport'
+begin
+  require 'simpleport'
+rescue LoadError
+  require 'spec/simpleport_mock'
+end
 
 class Ampel
   
@@ -41,15 +45,13 @@ class Ampel
   end
   
   def signal(duration=10)
-    duration = duration.to_i
-    
-    if duration > 0
+    if duration.to_i > 0
       Simpleport.simpleport_set_pin(@handle, SIGNAL, ON)
-      sleep(duration)
+      sleep(duration.to_i)
       Simpleport.simpleport_set_pin(@handle, SIGNAL, OFF)
-    elsif duration == 0
+    elsif duration == "Off"
       Simpleport.simpleport_set_pin(@handle, SIGNAL, OFF)
-    else
+    elsif duration == "On"
       Simpleport.simpleport_set_pin(@handle, SIGNAL, ON)
     end
   end
