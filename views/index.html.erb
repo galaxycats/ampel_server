@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<script src="http://<%= @request.host %>/prototype.js" type="text/javascript" charset="utf-8"></script>
+		
+		<title>Ampel Server</title>
+	</head>
+	
+	<body>
+		<div id="rundumleuchte">
+			<div id="signal_off">
+				<a href="http://<%= @request.host %>/ampel_server/index?actions[signal]=-1">
+					<img src="http://<%= @request.host %>/signal.gif" width="95" height="95" alt="Signal"><br />
+				</a>
+			</div>
+			
+			<div id="signal_on">
+				<a href="http://<%= @request.host %>/ampel_server/index?actions[signal]=0">
+					<img src="http://<%= @request.host %>/signal_animated.gif" width="95" height="95" alt="Signal"><br />
+				</a>
+			</div>
+			
+			<%- if @ampel.state_for("signal") == "Off" -%>
+				<script type="text/javascript" charset="utf-8">
+					$('signal_on').hide();
+					$('signal_off').show();
+				</script>
+			<%- else -%>
+			<script type="text/javascript" charset="utf-8">
+				$('signal_off').hide();
+				$('signal_on').show();
+			</script>
+			<%- end -%>
+			
+		</div>
+		
+		<div id="formular" style="left: 120px; top: 10px; position: absolute; width: 300px">
+			<form action="http://<%= @request.host %>/ampel_server/index" method="post">
+				<label for="duration">Duration</label>
+				<input type="text" name="actions[signal]" value="10" id="duration">
+				<input type="button" name="start" value="Start signal" id="Start signal" onclick="start_signal($(duration).value)">
+			</form>
+		</div>
+		
+		<div id="ampel" style="float: clear;">
+			<%- if @ampel.state_for("red") == "Off" -%>
+				<a href="http://<%= @request.host %>/ampel_server/index?actions[red]=On">
+					<img src="http://<%= @request.host %>/red_off.jpg" width="95" height="94" alt="Red Off"><br />
+				</a>
+			<%- else -%>
+				<a href="http://<%= @request.host %>/ampel_server/index?actions[red]=Off">
+					<img src="http://<%= @request.host %>/red_on.jpg" width="95" height="94" alt="Red On"><br />
+				</a>
+			<%- end -%>
+
+			<%- if @ampel.state_for("yellow") == "Off" -%>
+				<a href="http://<%= @request.host %>/ampel_server/index?actions[yellow]=On">
+					<img src="http://<%= @request.host %>/yellow_off.jpg" width="95" height="84" alt="Yellow Off"><br />
+				</a>
+			<%- else -%>
+				<a href="http://<%= @request.host %>/ampel_server/index?actions[yellow]=Off">
+					<img src="http://<%= @request.host %>/yellow_on.jpg" width="95" height="84" alt="Yellow On"><br />
+				</a>
+			<%- end -%>
+
+			<%- if @ampel.state_for("green") == "Off" -%>
+				<a href="http://<%= @request.host %>/ampel_server/index?actions[green]=On">
+					<img src="http://<%= @request.host %>/green_off.jpg" width="95" height="95" alt="Green Off"><br />
+				</a>
+			<%- else -%>
+				<a href="http://<%= @request.host %>/ampel_server/index?actions[green]=Off">
+					<img src="http://<%= @request.host %>/green_on.jpg" width="95" height="95" alt="Green On"><br />
+				</a>
+			<%- end -%>
+		</div>
+		
+		
+	</body>
+	
+	<script type="text/javascript" charset="utf-8">
+		function start_signal(duration) {
+			// This is too bad, there's better!
+			$('signal_off').hide();
+			$('signal_on').show();
+			new Ajax.Request('http://<%= @request.host %>/ampel_server/index?actions[signal]=' + duration, {
+			  onComplete: function(transport) {
+			    if (200 == transport.status)
+					$('signal_on').hide();
+					$('signal_off').show();
+			  }
+			});
+		};
+	</script>
+
+</html>
