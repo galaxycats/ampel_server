@@ -3,12 +3,12 @@ require 'simpleport'
 class Ampel
   
   SIGNAL = 2
-  RED = 7
+  RED    = 7
   YELLOW = 3
-  GREEN = 4
+  GREEN  = 4
   
   OFF = 0
-  ON = 1
+  ON  = 1
   
   def initialize
     @handle = Simpleport.simpleport_open
@@ -30,7 +30,14 @@ class Ampel
   end
   
   def state_for(color)
-    Simpleport.simpleport_get_pin(@handle, Ampel.const_get(color.upcase)) == 0 ? "Off" : "On"
+    Simplep ort.simpleport_get_pin(@handle, Ampel.const_get(color.upcase)) == 0 ? "Off" : "On"
+  end
+  
+  def state
+    states = %w(red yellow green signal).inject([]) do |state, color|
+      state << "#{color}=#{state_for(color)}"
+    end
+    return states
   end
   
   def signal(duration=10)

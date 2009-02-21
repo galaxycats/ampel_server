@@ -20,4 +20,8 @@ class AmpelServer < Merb::Controller
     render
   end
   
+  def states
+    render @@ampel.states.join(";"), :format => "text/plain", :layout => false
+  end
+  
 end
