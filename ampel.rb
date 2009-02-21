@@ -30,7 +30,7 @@ class Ampel
   end
   
   def state_for(color)
-    Simplep ort.simpleport_get_pin(@handle, Ampel.const_get(color.upcase)) == 0 ? "Off" : "On"
+    Simpleport.simpleport_get_pin(@handle, Ampel.const_get(color.upcase)) == 0 ? "Off" : "On"
   end
   
   def state
