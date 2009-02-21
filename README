@@ -1,0 +1,5 @@
+# AmpelServer 
+
+This is a small Merb application to control a traffic light that is connected to your server via USB. The connection is realized through USBProg and the Simpleport firmware (http://www.embedded-projects.net/index.php?page_id=174).
+
+A possible usage scenario would be to signal the actual build state of your Cruise Control via the traffic lights.
