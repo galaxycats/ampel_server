@@ -34,6 +34,10 @@
 		  <%= partial :light, :with => ["red", "yellow", "green"] %>
 		</div>
 		
+		<div id="reset_button" style="margin-top: 10px">
+		  <a href="http://<%= @request.host %>/ampel_server/reset">Reset</a>
+	  </div>
+		
 	</body>
 	
 	<script type="text/javascript" charset="utf-8">

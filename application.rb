@@ -20,6 +20,12 @@ class AmpelServer < Merb::Controller
     render
   end
   
+  def reset
+    @@ampel = Ampel.new
+    
+    redirect "/"
+  end
+  
   def states
     render @@ampel.state.join(";"), :layout => false
   end
