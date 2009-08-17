@@ -1,9 +1,9 @@
         <%- if @ampel.state_for(light) == "Off" -%>
-        	<a href="http://<%= @request.host %>/ampel_server/index?actions[<%= light %>]=On">
+        	<a href="http://<%= @request.host %>/ampel_server/change_state?actions[<%= light %>]=On">
         		<img src="http://<%= @request.host %>/<%= light %>_off.jpg" width="95" height="94" alt="<%= light.capitalize %> Off"><br />
         	</a>
         <%- else -%>
-        	<a href="http://<%= @request.host %>/ampel_server/index?actions[<%= light %>]=Off">
+        	<a href="http://<%= @request.host %>/ampel_server/change_state?actions[<%= light %>]=Off">
         		<img src="http://<%= @request.host %>/<%= light %>_on.jpg" width="95" height="94" alt="<%= light.capitalize %> On"><br />
         	</a>
         <%- end -%>

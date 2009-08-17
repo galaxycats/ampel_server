@@ -1,3 +1,4 @@
+require 'singleton'
 begin
   require 'simpleport'
 rescue LoadError
@@ -5,6 +6,7 @@ rescue LoadError
 end
 
 class Ampel
+  include Singleton
   
   SIGNAL = 2
   RED    = 7

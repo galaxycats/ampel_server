@@ -17,7 +17,8 @@ end
 
 # Move this to application.rb if you want it to be reloadable in dev mode.
 Merb::Router.prepare do
-  match('/').to(:controller => "ampel_server", :action =>'index')
+  match('/').to(:controller => "ampel_server", :action => 'index')
+  match('/').to(:controller => "ampel_server", :action => 'change_state')
 
   default_routes
 end

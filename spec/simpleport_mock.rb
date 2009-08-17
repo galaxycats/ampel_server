@@ -15,7 +15,7 @@ class Simpleport
   }
   
   def self.simpleport_open
-    Merb.logger.debug "Handle created."
+    Merb.logger.debug "Simpleport mock handle was created."
     "handle_mock"
   end
   

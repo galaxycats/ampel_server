@@ -1,11 +1,11 @@
     	<div id="signal_off">
-    		<a href="http://<%= @request.host %>/ampel_server/index?actions[signal]=On">
+    		<a href="http://<%= @request.host %>/ampel_server/change_state?actions[signal]=On">
     			<img src="http://<%= @request.host %>/signal.gif" width="95" height="95" alt="Signal"><br />
     		</a>
     	</div>
 	
     	<div id="signal_on">
-    		<a href="http://<%= @request.host %>/ampel_server/index?actions[signal]=Off">
+    		<a href="http://<%= @request.host %>/ampel_server/change_state?actions[signal]=Off">
     			<img src="http://<%= @request.host %>/signal_animated.gif" width="95" height="95" alt="Signal"><br />
     		</a>
     	</div>
