@@ -10,6 +10,8 @@ class CISignalHandler
       project = CIProject.new(state_definition["ci"])
       
       if project.is_broken? and was(project, :good)
+        ampel.red "On"
+        ampel.green "Off"
         ampel.signal 23
       end
       
@@ -20,9 +22,6 @@ class CISignalHandler
       unless anything_is_broken?
         ampel.red "Off"
         ampel.green "On"
-      else
-        ampel.red "On"
-        ampel.green "Off"
       end
     end
   end

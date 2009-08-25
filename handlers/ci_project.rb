@@ -1,6 +1,6 @@
 class CIProject
   
-  VALID_STATES = %w(building broken good)
+  VALID_STATES = %w(building broken good done)
   
   attr_accessor :name
   attr_reader   :build_state
